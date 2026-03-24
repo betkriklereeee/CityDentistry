@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="Assets/favicon.ico"/>
+<link rel="icon" type="image/png" sizes="32x32" href="Assets/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="Assets/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="Assets/favicon-32x32.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WordPress, Envato & SEO — NuvelloWeb LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --blush: #f2dde4; --blush-mid: #e8c6d0; --blush-dark: #c4859a;
+    --sky: #d6e8f5; --sky-dark: #4a8db5;
+    --cream: #faf7f4; --white: #ffffff;
+    --ink: #1e1e2e; --ink-light: #4a4a5e; --ink-faint: #8888a0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: #ddd9d3; color: var(--ink); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .doc-wrap { max-width: 960px; margin: 0 auto; background: var(--cream); box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08), 0 32px 64px rgba(0,0,0,0.10); min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    background: #1c2b22;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: white; text-decoration: none; letter-spacing: 0.01em; }
+  .nav-brand span { color: #e8c6d0; }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    font-size: 12.5px; color: rgba(255,255,255,0.6);
+    text-decoration: none; padding: 6px 13px;
+    border-radius: 3px; letter-spacing: 0.3px;
+    transition: all 0.18s ease; font-weight: 400;
+  }
+  .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+  .nav-links a.active { color: #e8c6d0; font-weight: 500; }
+  .nav-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 3px; }
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    gap: 5px; width: 36px; height: 36px; cursor: pointer;
+    padding: 4px; border: none; background: none;
+  }
+  .nav-hamburger span { display: block; height: 2px; background: white; border-radius: 2px; transition: all 0.25s ease; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-drawer {
+    position: fixed; top: 58px; right: 0;
+    width: 270px; height: calc(100vh - 58px);
+    background: #1c2b22; z-index: 99;
+    display: flex; flex-direction: column;
+    padding: 28px 20px; gap: 4px;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.25);
+    overflow-y: auto;
+  }
+  .nav-drawer.open { transform: translateX(0); }
+  .nav-drawer a {
+    font-size: 14px; color: rgba(255,255,255,0.65);
+    text-decoration: none; padding: 10px 14px;
+    border-radius: 4px; font-weight: 400;
+    transition: all 0.18s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-drawer a:last-child { border-bottom: none; }
+  .nav-drawer a:hover { color: white; background: rgba(255,255,255,0.08); }
+  .nav-drawer a.active { color: #e8c6d0; font-weight: 500; }
+  .nav-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 98; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .nav-overlay.open { opacity: 1; pointer-events: all; }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex !important; }
+    nav { padding: 0 20px; }
+  }
+
+
+  /* PAGE */
+  .page { max-width: 780px; margin: 0 auto; padding: 60px 40px 80px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .anim { animation: fadeUp 0.6s ease both; opacity: 0; }
+  .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+  .d3 { animation-delay: 0.25s; } .d4 { animation-delay: 0.33s; }
+  .d5 { animation-delay: 0.40s; } .d6 { animation-delay: 0.47s; }
+
+  .hero { margin-bottom: 52px; }
+  .page-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #c4859a; font-weight: 500; margin-bottom: 12px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 42px; line-height: 1.1; letter-spacing: -0.5px; color: #1c2b22; margin-bottom: 16px; font-weight: 300; }
+  .hero h1 em { font-style: italic; color: #c4859a; }
+  .hero-intro { font-size: 15px; color: #4a4a5e; max-width: 560px; line-height: 1.8; border-left: 3px solid #e8c6d0; padding-left: 18px; }
+
+  .section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #c4859a; font-weight: 600; margin-bottom: 18px; }
+
+  .explainer { background: #faf7f4; border: 1px solid rgba(100,100,140,0.12); border-radius: 6px; padding: 32px 36px; margin-bottom: 48px; }
+  .explainer p { font-size: 14.5px; color: #3a3a4e; line-height: 1.85; }
+  .explainer p + p { margin-top: 14px; }
+  .explainer strong { color: #1c2b22; font-weight: 500; }
+
+  .steps { margin-bottom: 48px; }
+  .step { display: flex; gap: 24px; margin-bottom: 28px; align-items: flex-start; }
+  .step:last-child { margin-bottom: 0; }
+  .step-number { font-family: 'Cormorant Garamond', serif; font-size: 38px; color: #e8c6d0; line-height: 1; min-width: 44px; padding-top: 2px; font-weight: 300; }
+  .step-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #1c2b22; margin-bottom: 6px; font-weight: 400; }
+  .step-content p { font-size: 14px; color: #3a3a4e; line-height: 1.75; }
+  .step-content p strong { color: #1c2b22; font-weight: 500; }
+  .step-divider { border: none; border-top: 1px solid rgba(100,100,140,0.1); margin: 0 0 28px 68px; }
+
+  .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 48px; }
+  .value-card { border: 1px solid rgba(100,100,140,0.12); border-radius: 6px; padding: 22px 24px; background: white; transition: box-shadow 0.2s; }
+  .value-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .value-card-icon { font-size: 20px; margin-bottom: 10px; }
+  .value-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #1c2b22; margin-bottom: 6px; font-weight: 400; }
+  .value-card p { font-size: 13.5px; color: #6b6b7e; line-height: 1.7; }
+
+  .expect { margin-bottom: 48px; }
+  .expect-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .expect-list li { display: flex; gap: 16px; align-items: flex-start; font-size: 14px; color: #3a3a4e; line-height: 1.7; }
+  .expect-check { width: 20px; height: 20px; border-radius: 50%; background: #1c2b22; color: white; font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .expect-list li strong { color: #1c2b22; font-weight: 500; }
+
+  .pricing-note { border: 1px solid rgba(100,100,140,0.12); border-radius: 6px; overflow: hidden; margin-bottom: 48px; }
+  .pricing-note-header { background: #1c2b22; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .pricing-note-header span { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: white; font-weight: 300; }
+  .pricing-badge { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; background: rgba(232,198,208,0.2); color: #e8c6d0; padding: 4px 12px; border-radius: 2px; font-weight: 500; }
+  .pricing-note-body { padding: 22px 24px; background: white; font-size: 14px; color: #3a3a4e; line-height: 1.8; }
+  .pricing-note-body strong { color: #1c2b22; font-weight: 500; }
+  .pricing-note-body p + p { margin-top: 10px; }
+
+  .cba-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; font-size: 13.5px; }
+  .cba-table th { background: #1c2b22; color: white; padding: 12px 16px; text-align: left; font-weight: 400; font-family: 'Cormorant Garamond', serif; font-size: 16px; }
+  .cba-table td { padding: 12px 16px; border-bottom: 1px solid rgba(100,100,140,0.09); color: #3a3a4e; vertical-align: top; }
+  .cba-table tr:last-child td { border-bottom: none; }
+  .cba-table tr:nth-child(even) td { background: #faf7f4; }
+  .cba-table .pos { color: #1c6b3a; font-weight: 500; }
+  .cba-table .neg { color: #993c1d; font-weight: 500; }
+
+  .roi-highlight { background: linear-gradient(135deg, #f2dde4 0%, #d6e8f5 100%); border-radius: 8px; padding: 28px 32px; margin-bottom: 48px; text-align: center; }
+  .roi-highlight .roi-num { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; color: #1c2b22; line-height: 1; }
+  .roi-highlight .roi-label { font-size: 13px; color: #4a4a5e; margin-top: 8px; letter-spacing: 0.05em; }
+
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #6b6b7e; text-decoration: none; margin-bottom: 48px; transition: color 0.18s; }
+  .back-link:hover { color: #1c2b22; }
+  .back-link::before { content: '←'; font-size: 14px; }
+
+  .footer { border-top: 1px solid rgba(100,100,140,0.12); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #6b6b7e; }
+  .footer strong { color: #1c2b22; font-weight: 500; }
+  .footer a { color: #1c2b22; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  .floating-cta { position: fixed; bottom: 28px; right: 28px; z-index: 200; }
+  .floating-btn { background: #1c2b22; color: white; font-size: 13px; font-weight: 500; padding: 12px 20px; border-radius: 40px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.18); display: flex; align-items: center; gap: 8px; transition: background 0.18s, transform 0.18s; white-space: nowrap; }
+  .floating-btn:hover { background: #0f1a14; transform: translateY(-2px); }
+  .floating-btn .dot { width: 7px; height: 7px; border-radius: 50%; background: #e8c6d0; flex-shrink: 0; }
+
+  .sub-card { border: 1px solid rgba(100,100,140,0.12); border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+  .sub-card-header { padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .sub-card-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: white; }
+  .sub-card-body { padding: 24px; background: white; }
+  .sub-card-body p { font-size: 14px; color: #3a3a4e; line-height: 1.8; margin-bottom: 16px; }
+  .sub-badge { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; font-weight: 500; white-space: nowrap; }
+  .feat-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .feat-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; color: #3a3a4e; line-height: 1.6; }
+  .feat-check { color: #1c2b22; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+  .section-divider { border: none; border-top: 1px solid rgba(100,100,140,0.1); margin: 48px 0; }
+
+  @media (max-width: 640px) {
+    .page { padding: 40px 20px 60px; }
+    .hero h1 { font-size: 32px; }
+    .value-grid { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 8px; text-align: center; }
+    .floating-cta { bottom: 16px; right: 16px; }
+  }
+
+</style>
+</head>
+<body>
+<div class="doc-wrap">
+
+<nav>
+  <a href="index.html" class="nav-brand">NuvelloWeb <span>LLC</span></a>
+  <div class="nav-links">
+    <a href="index.html">Proposal</a>
+    <div class="nav-divider"></div>
+    <a href="wordpress-seo.html" class="active">WordPress & SEO</a>
+    <div class="nav-divider"></div>
+    <a href="social-media.html">Social Media</a>
+    <div class="nav-divider"></div>
+    <a href="services.html">Services & Subscriptions</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">Proposal</a>
+  <a href="wordpress-seo.html" class="active">WordPress & SEO</a>
+  <a href="social-media.html">Social Media</a>
+  <a href="services.html">Services & Subscriptions</a>
+</div>
+
+<div class="floating-cta">
+  <a href="index.html" class="floating-btn"><span class="dot"></span> Back to Proposal</a>
+</div>
+
+<div class="page">
+
+  <a href="index.html" class="back-link anim d1">Back to Proposal</a>
+
+  <div class="hero anim d1">
+    <div class="page-label">Learn More · WordPress & SEO</div>
+    <h1>Your Website,<br><em>Built to Be Found.</em></h1>
+    <p class="hero-intro">Here's exactly how we build, customize, and optimize your City Dentistry website — from choosing the right Envato template to ranking on Google Maps for "dentist San Clemente."</p>
+  </div>
+
+  <!-- WORDPRESS & ENVATO -->
+  <div class="explainer anim d2">
+    <div class="section-label">WordPress & Envato — What It Is</div>
+    <p>Your website will be built on <strong>WordPress</strong> — the world's most widely used website platform, powering over 40% of all websites. It gives you a professional, fully editable site without locking you into a proprietary builder like Wix or Squarespace.</p>
+    <p>Rather than building from scratch (which takes months and costs significantly more), we use a premium <strong>Envato template</strong> — a professionally designed theme purchased from Envato Market. These themes are built by world-class designers and come with pre-built layouts, animations, and components. We then customize it fully to match City Dentistry's new brand identity, colors, and content.</p>
+    <p><strong>The result:</strong> a custom-looking, high-quality website delivered in weeks, not months — at a fraction of the cost of a bespoke build.</p>
+  </div>
+
+  <div class="steps anim d3">
+    <div class="section-label">The Build Process — Step by Step</div>
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Template selection & purchase</h3>
+        <p>We browse Envato Market together and select a template that fits City Dentistry's coastal, clean aesthetic. <strong>The ~$69 template fee is paid directly by you</strong> and is the only third-party cost for the build itself.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Hosting & domain setup</h3>
+        <p>We configure your hosting environment (SiteGround or WP Engine), connect your domain, and install WordPress and the theme. <strong>Your site has a staging environment</strong> — meaning we build and test privately before anything goes live.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Brand customization</h3>
+        <p>We apply City Dentistry's new logo, color palette, typography, and imagery throughout. Every page is adapted — not just the homepage. <strong>Up to 8 pages</strong> are built out: Home, Services, About, Patient Comfort, Community & ESG, Insurance, Contact, and Forms.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>Copywriting & content</h3>
+        <p>Every page gets written copy tailored to City Dentistry's voice — warm, coastal, and professional. Services are described clearly. <strong>The Patient Comfort guide and Community & ESG pages</strong> are written from scratch to reflect Dr. Dang's values and practice philosophy.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">05</div>
+      <div class="step-content">
+        <h3>Digital forms & integrations</h3>
+        <p>Patient intake forms are embedded directly on the site — no paper required. <strong>Google Business Profile</strong> is connected, updated, and optimized as part of the build.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">06</div>
+      <div class="step-content">
+        <h3>Review, revisions & launch</h3>
+        <p>You review the full site on staging. We incorporate your feedback, then <strong>flip the switch and go live.</strong> Post-launch, we monitor for any technical issues in the first 48 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ON-PAGE SEO -->
+  <hr class="section-divider">
+  <div class="anim d3">
+    <div class="page-label">Learn More · On-Page SEO</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#1c2b22;margin-bottom:16px;line-height:1.15">Getting Found<br><em>on Google.</em></h1>
+  </div>
+
+  <div class="explainer anim d3">
+    <div class="section-label">What Is On-Page SEO?</div>
+    <p>On-page SEO is everything we do <strong>inside your website</strong> to help Google understand what your practice does, who it serves, and where it's located. Done right, it means City Dentistry appears when someone in San Clemente searches "dentist near me," "teeth whitening San Clemente," or "family dentist Del Mar Street."</p>
+    <p>Most dental websites are invisible to Google — not because they're bad, but because no one took the time to set them up correctly. <strong>We fix that systematically, page by page.</strong></p>
+  </div>
+
+  <div class="steps anim d4">
+    <div class="section-label">What We Do — On-Page</div>
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Keyword research</h3>
+        <p>We identify exactly what terms San Clemente residents search when looking for a dentist — by volume, competition, and local intent. <strong>We target keywords you can actually rank for</strong>, not just the most competitive ones.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Meta titles & descriptions</h3>
+        <p>Every page gets a unique, keyword-optimized title and description — the first thing Google and searchers see. <strong>These are not generic.</strong> Each one is written specifically for that page's content and target search term.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Header structure & content optimization</h3>
+        <p>We structure every page with proper H1, H2, and H3 headings that guide both readers and search engines. <strong>Copy is written to include natural keyword placement</strong> without feeling stuffed or unnatural.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>Local schema markup</h3>
+        <p>We add structured data (schema) that tells Google: this is a dental practice, here is the address, here are the hours, here is the phone number. <strong>This directly improves your Google Maps and local pack visibility.</strong></p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">05</div>
+      <div class="step-content">
+        <h3>Image optimization & alt text</h3>
+        <p>Every image is compressed for fast load times and given descriptive alt text. <strong>Page speed is a direct Google ranking factor</strong> — slow sites rank lower, period.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFF-PAGE SEO -->
+  <hr class="section-divider">
+  <div class="anim d4">
+    <div class="page-label">Learn More · Off-Page SEO</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#1c2b22;margin-bottom:16px;line-height:1.15">Building Your<br><em>Authority Online.</em></h1>
+  </div>
+
+  <div class="explainer anim d4">
+    <div class="section-label">What Is Off-Page SEO?</div>
+    <p>Off-page SEO is everything that happens <strong>outside your website</strong> to build its credibility in Google's eyes. The primary currency here is <strong>backlinks</strong> — other websites linking to yours. Google treats these like votes: the more reputable sites that link to City Dentistry, the more Google trusts your site and the higher it ranks.</p>
+    <p>For a local dental practice, off-page SEO is also about <strong>directory listings and citations</strong> — making sure City Dentistry appears consistently across every major local directory with the correct name, address, and phone number (NAP consistency).</p>
+  </div>
+
+  <div class="steps anim d5">
+    <div class="section-label">What We Do — Off-Page</div>
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Google Business Profile optimization</h3>
+        <p>Your GBP listing is the single most important local SEO asset. We fully optimize it — <strong>services, photos, posts, Q&A, categories, and hours</strong> — so City Dentistry shows up prominently in the local map pack.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Directory listings & citations</h3>
+        <p>We submit City Dentistry to the top local and dental-specific directories: <strong>Yelp, Healthgrades, Zocdoc, Vitals, WebMD, Yellow Pages, Bing Places, Apple Maps,</strong> and more. Consistent NAP data across all listings signals legitimacy to Google.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Local backlink outreach</h3>
+        <p>We identify local San Clemente and OC websites — community organizations, local blogs, business associations, school websites — and pursue <strong>relevant, high-quality backlinks</strong> that improve domain authority without risking Google penalties.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>Review strategy</h3>
+        <p>Google Reviews are a major local ranking signal. We implement a <strong>systematic review request process</strong> — email templates, in-office prompts, and follow-up sequences — to grow your Google and Yelp review count consistently.</p>
+      </div>
+    </div>
+    <hr class="step-divider">
+    <div class="step">
+      <div class="step-number">05</div>
+      <div class="step-content">
+        <h3>Press & community mentions</h3>
+        <p>Every local event, sponsorship, or press release we create also serves as an SEO asset. <strong>Coverage in local media and community sites generates organic backlinks</strong> that no ad spend can replicate.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="value-grid anim d5">
+    <div class="value-card">
+      <div class="value-card-icon">📍</div>
+      <h4>Local Pack Visibility</h4>
+      <p>The 3-pack of Google Maps results gets the majority of clicks for local searches. Off-page SEO is the primary driver of appearing there.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-card-icon">🔗</div>
+      <h4>Backlinks = Trust</h4>
+      <p>Google ranks sites it trusts. Backlinks from reputable local sources are the clearest signal that City Dentistry is a legitimate, established practice.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-card-icon">⭐</div>
+      <h4>Reviews Drive Conversions</h4>
+      <p>82% of patients read reviews before choosing a dentist. A strong, growing review count converts searchers into booked appointments.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-card-icon">📊</div>
+      <h4>Compounds Over Time</h4>
+      <p>Unlike ads that stop the moment you stop paying, SEO compounds. Every backlink, every review, every listing adds permanently to your authority.</p>
+    </div>
+  </div>
+
+  <div class="footer anim d6">
+    <div><strong>NuvelloWeb LLC</strong> · Benjamin Krikler</div>
+    <div><a href="/cdn-cgi/l/email-protection#472f222b2b2807293231222b2b283022256924282a"><span class="__cf_email__" data-cfemail="422a272e2e2d022c3734272e2e2d3527206c212d2f">[email&#160;protected]</span></a> · <a href="https://nuvelloweb.com" target="_blank">nuvelloweb.com</a></div>
+  </div>
+
+</div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('navDrawer');
+  const overlay = document.getElementById('navOverlay');
+  function toggleNav() {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+    overlay.classList.toggle('open');
+  }
+  hamburger.addEventListener('click', toggleNav);
+  overlay.addEven
