@@ -38,12 +38,13 @@
     color: var(--ink);
     font-size: 15px;
     line-height: 1.7;
-    padding: 0 0 80px;
+    padding: 0;
   }
 
   .doc-wrap {
     max-width: 960px;
     margin: 0 auto;
+    margin-bottom: 80px;
     background: var(--cream);
     box-shadow:
       0 2px 4px rgba(0,0,0,0.04),
@@ -93,41 +94,64 @@
   .nav-links > li > a.active { color: var(--blush-mid); font-weight: 500; }
   .nav-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 2px; }
 
-  /* dropdown */
+  
+  /* hamburger */
+  /* ── DROPDOWN ── */
+  .nav-dropdown-wrap { position: relative; display: flex; align-items: center; }
+  .nav-dropdown-wrap > a { display: block; }
+  .nav-caret { font-size: 9px; margin-left: 4px; opacity: 0.5; vertical-align: middle; display: inline-block; transition: transform 0.18s; }
+  .nav-dropdown-wrap:hover .nav-caret { transform: rotate(180deg); }
+  /* invisible padding bridge so mouse can travel from trigger to menu */
   .nav-dropdown {
-    position: absolute; top: calc(100% + 6px); left: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 10px; /* bridge gap — invisible hover zone */
+    background: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.18s, transform 0.18s;
+    z-index: 300;
+    min-width: 210px;
+  }
+  .nav-dropdown-wrap:hover .nav-dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .nav-dropdown-inner {
     background: #1c2b22;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 6px;
-    min-width: 220px;
     padding: 6px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.28);
-    opacity: 0; pointer-events: none;
-    transform: translateY(-6px);
-    transition: opacity 0.18s, transform 0.18s;
-    z-index: 300;
-  }
-  .nav-links > li:hover .nav-dropdown {
-    opacity: 1; pointer-events: all; transform: translateY(0);
   }
   .nav-dropdown a {
-    display: block;
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.6);
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
     text-decoration: none;
     padding: 8px 14px;
     border-radius: 4px;
     transition: all 0.15s;
     white-space: nowrap;
-    letter-spacing: 0.2px;
+    line-height: 1.3;
   }
   .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); }
-  .nav-dropdown a .dd-label { color: var(--blush-mid); font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 1px; }
+  .nav-dropdown a.active { color: #e8c6d0; }
+  .nav-dropdown a .dd-label {
+    color: rgba(232,198,208,0.6);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
   .nav-dropdown .dd-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 8px; }
-  .nav-caret { font-size: 9px; margin-left: 4px; opacity: 0.5; vertical-align: middle; display: inline-block; transition: transform 0.18s; }
-  .nav-links > li:hover .nav-caret { transform: rotate(180deg); }
 
-  /* hamburger */
   .nav-hamburger {
     display: none; flex-direction: column; justify-content: center;
     gap: 5px; width: 36px; height: 36px; cursor: pointer;
@@ -145,12 +169,12 @@
     background: #1c2b22; z-index: 199;
     display: flex; flex-direction: column;
     padding: 24px 20px; gap: 4px;
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    transform: translateX(100%); visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), visibility 0.3s;
     box-shadow: -4px 0 24px rgba(0,0,0,0.25);
     overflow-y: auto;
   }
-  .nav-drawer.open { transform: translateX(0); }
+  .nav-drawer.open { transform: translateX(0); visibility: visible; }
   .nav-drawer a {
     font-size: 14px; color: rgba(255,255,255,0.65);
     text-decoration: none; padding: 10px 14px;
@@ -169,12 +193,12 @@
   }
   .nav-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.4);
-    z-index: 198; opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease;
+    z-index: 198; opacity: 0; pointer-events: none; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
-  .nav-overlay.open { opacity: 1; pointer-events: all; }
+  .nav-overlay.open { opacity: 1; pointer-events: all; visibility: visible; }
 
-  @media (max-width: 700px) {
+  @media (max-width: 480px) {
     .nav-links { display: none; }
     .nav-hamburger { display: flex !important; }
     nav { padding: 0 20px; }
@@ -182,12 +206,10 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh;
     display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 80px 80px 80px;
+    padding: 60px 80px 60px;
     background: linear-gradient(160deg, var(--blush) 0%, var(--sky) 50%, var(--mint) 100%);
     position: relative;
-    overflow: hidden;
   }
   .hero::before {
     content: '';
@@ -594,8 +616,9 @@
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
+    .nav-hamburger { display: flex !important; }
     section, .hero, .sig-section, footer { padding-left: 24px; padding-right: 24px; }
-    .hero { padding: 80px 24px 60px; }
+    .hero { padding: 40px 24px 48px; }
     .overview-grid { grid-template-columns: 1fr; }
     .terms-grid { grid-template-columns: 1fr; }
     .sig-grid { grid-template-columns: 1fr; }
@@ -612,16 +635,18 @@
     <li><a href="#overview" class="active">Proposal</a></li>
     <li class="nav-divider"></li>
     <li>
-      <a href="#scope">Scope <span class="nav-caret">▾</span></a>
-      <div class="nav-dropdown">
-        <a href="#scope"><span class="dd-label">Phase 1</span>Brand Refresh</a>
-        <a href="#scope"><span class="dd-label">Phase 2</span>Website Update</a>
-        <div class="dd-divider"></div>
-        <a href="#scope"><span class="dd-label">Phase 3</span>Local SEO &amp; Social Ads</a>
-        <a href="#scope"><span class="dd-label">Phase 4</span>Community Outreach &amp; Events</a>
-        <div class="dd-divider"></div>
-        <a href="#scope"><span class="dd-label">Phase 5</span>Content &amp; Social Media</a>
-        <a href="#scope"><span class="dd-label">Phase 6</span>Measurement &amp; Reporting</a>
+      <div class="nav-dropdown-wrap">
+        <a href="#scope">Scope <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown"><div class="nav-dropdown-inner">
+          <a href="#scope"><span class="dd-label">Phase 1</span>Brand Refresh</a>
+          <a href="#scope"><span class="dd-label">Phase 2</span>Website Update</a>
+          <div class="dd-divider"></div>
+          <a href="#scope"><span class="dd-label">Phase 3</span>Local SEO &amp; Social Ads</a>
+          <a href="#scope"><span class="dd-label">Phase 4</span>Community Outreach &amp; Events</a>
+          <div class="dd-divider"></div>
+          <a href="#scope"><span class="dd-label">Phase 5</span>Content &amp; Social Media</a>
+          <a href="#scope"><span class="dd-label">Phase 6</span>Measurement &amp; Reporting</a>
+        </div></div>
       </div>
     </li>
     <li><a href="#timeline">Timeline</a></li>
@@ -630,11 +655,14 @@
     <li><a href="#terms">Terms</a></li>
     <li class="nav-divider"></li>
     <li>
-      <a href="#">Learn More <span class="nav-caret">▾</span></a>
-      <div class="nav-dropdown">
-        <a href="wordpress-seo.html"><span class="dd-label">Deep Dive</span>WordPress &amp; SEO</a>
-        <a href="social-media.html"><span class="dd-label">Deep Dive</span>Social Media &amp; Ads</a>
-        <a href="services.html"><span class="dd-label">Deep Dive</span>Services &amp; Subscriptions</a>
+      <div class="nav-dropdown-wrap">
+        <a href="#">Learn More <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown"><div class="nav-dropdown-inner">
+          <a href="wordpress-seo.html"><span class="dd-label">Deep Dive</span>WordPress &amp; SEO</a>
+          <a href="social-media.html"><span class="dd-label">Deep Dive</span>Social Media &amp; Ads</a>
+          <a href="the-works.html"><span class="dd-label">Deep Dive</span>The Works</a>
+          <a href="powerhouse.html"><span class="dd-label">Deep Dive</span>The Powerhouse</a>
+        </div></div>
       </div>
     </li>
     <li class="nav-divider"></li>
@@ -644,27 +672,6 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="nav-overlay" id="navOverlay"></div>
-<div class="nav-drawer" id="navDrawer">
-  <a href="#overview" class="active">Proposal</a>
-  <div class="drawer-section">Scope of Work</div>
-  <a href="#scope" class="drawer-sub">Phase 1 — Brand Refresh</a>
-  <a href="#scope" class="drawer-sub">Phase 2 — Website Update</a>
-  <a href="#scope" class="drawer-sub">Phase 3 — SEO &amp; Social Ads</a>
-  <a href="#scope" class="drawer-sub">Phase 4 — Community &amp; Events</a>
-  <a href="#scope" class="drawer-sub">Phase 5 — Content &amp; Social</a>
-  <a href="#scope" class="drawer-sub">Phase 6 — Measurement</a>
-  <div class="drawer-section">Learn More</div>
-  <a href="wordpress-seo.html" class="drawer-sub">WordPress &amp; SEO</a>
-  <a href="social-media.html" class="drawer-sub">Social Media &amp; Ads</a>
-  <a href="services.html" class="drawer-sub">Services &amp; Subscriptions</a>
-  <div class="drawer-section">Campaign</div>
-  <a href="#timeline">Timeline</a>
-  <a href="#investment">Investment</a>
-  <a href="#terms">Terms</a>
-  <a href="#signature" style="color:var(--blush-mid);font-weight:500;margin-top:8px">Sign Agreement ✦</a>
-</div>
-
 <!-- HERO -->
 <div class="hero">
   <div class="hero-tag">Statement of Work &nbsp;·&nbsp; 2026</div>
@@ -989,7 +996,7 @@
       <h3>Measurement &amp; Reporting</h3>
       <span class="weeks">Weeks 6–24</span>
       <span style="margin-left:auto;background:#e8e0f5;color:#6a4eb5;font-size:11px;font-weight:500;letter-spacing:0.06em;padding:5px 14px;border-radius:100px">Monthly retainer — $2,750/mo</span>
-      <a href="services.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:12.5px;font-weight:500;color:#1c2b22;text-decoration:none;border:1px solid rgba(28,43,34,0.25);padding:8px 18px;border-radius:3px;transition:all 0.18s;letter-spacing:0.3px" onmouseover="this.style.background='#1c2b22';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='#1c2b22'">See full services & subscriptions breakdown →</a>
+      <a href="powerhouse.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:12.5px;font-weight:500;color:#1c2b22;text-decoration:none;border:1px solid rgba(28,43,34,0.25);padding:8px 18px;border-radius:3px;transition:all 0.18s;letter-spacing:0.3px" onmouseover="this.style.background='#1c2b22';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='#1c2b22'">See the Powerhouse →</a>
     </div>
     <table class="line-items">
       <thead>
@@ -1211,6 +1218,27 @@
   <span>Where the tide meets your smile.</span>
 </footer>
 
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="nav-drawer" id="navDrawer">
+  <a href="#overview" class="active">Proposal</a>
+  <div class="drawer-section">Scope of Work</div>
+  <a href="#scope" class="drawer-sub">Phase 1 — Brand Refresh</a>
+  <a href="#scope" class="drawer-sub">Phase 2 — Website Update</a>
+  <a href="#scope" class="drawer-sub">Phase 3 — SEO &amp; Social Ads</a>
+  <a href="#scope" class="drawer-sub">Phase 4 — Community &amp; Events</a>
+  <a href="#scope" class="drawer-sub">Phase 5 — Content &amp; Social</a>
+  <a href="#scope" class="drawer-sub">Phase 6 — Measurement</a>
+  <div class="drawer-section">Learn More</div>
+  <a href="wordpress-seo.html" class="drawer-sub">WordPress &amp; SEO</a>
+  <a href="social-media.html" class="drawer-sub">Social Media &amp; Ads</a>
+  <a href="the-works.html" class="drawer-sub">The Works</a>
+  <a href="powerhouse.html" class="drawer-sub">The Powerhouse</a>
+  <div class="drawer-section">Campaign</div>
+  <a href="#timeline">Timeline</a>
+  <a href="#investment">Investment</a>
+  <a href="#terms">Terms</a>
+  <a href="#signature" style="color:var(--blush-mid);font-weight:500;margin-top:8px">Sign Agreement ✦</a>
+</div>
 </div>
 <script>
   const hamburger = document.getElementById('hamburger');
