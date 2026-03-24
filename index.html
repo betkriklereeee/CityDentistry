@@ -76,7 +76,8 @@
     display: flex; align-items: center; gap: 4px; list-style: none;
   }
   .nav-links > li { position: relative; }
-  .nav-links > li > a {
+  .nav-links > li > a,
+  .nav-dropdown-wrap > a {
     font-family: var(--sans);
     font-size: 12.5px;
     font-weight: 400;
@@ -90,8 +91,27 @@
     white-space: nowrap;
   }
   .nav-links > li > a:hover,
-  .nav-links > li:hover > a { color: white; background: rgba(255,255,255,0.08); }
-  .nav-links > li > a.active { color: var(--blush-mid); font-weight: 500; }
+  .nav-links > li:hover > a,
+  .nav-dropdown-wrap > a:hover,
+  .nav-dropdown-wrap:hover > a { color: white; background: rgba(255,255,255,0.08); }
+  .nav-links > li > a.active,
+  .nav-dropdown-wrap > a.active { color: var(--blush-mid); font-weight: 500; }
+  /* also style plain .nav-links a for pages that use flat div nav */
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    padding: 6px 13px;
+    border-radius: 3px;
+    display: block;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+  .nav-links a.active { color: var(--blush-mid); font-weight: 500; }
   .nav-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 2px; }
 
   
