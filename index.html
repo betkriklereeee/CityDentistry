@@ -1535,55 +1535,104 @@
 <!-- INVESTMENT -->
 <section id="investment">
   <div class="section-label">Investment Summary</div>
-  <h2 class="section-title">Transparent <em>pricing,</em> by phase.</h2>
-  <p class="section-intro">All fees are structured across three clear categories: a one-time website fee, a monthly retainer covering all ongoing services, and estimated third-party infrastructure costs paid directly by the client.</p>
+  <h2 class="section-title">Simple, <em>transparent pricing.</em></h2>
+  <p class="section-intro">Two fees — a one-time website build and a single monthly retainer. That's it. Third-party costs go directly to the vendors, not through NuvelloWeb.</p>
 
+  <!-- PRICING CARDS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;">
+
+    <!-- Card 1: Website -->
+    <div style="background:var(--blush);border-radius:14px;padding:32px 28px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--blush-dark);margin-bottom:16px;">One-Time · Website Build</div>
+      <div style="font-family:var(--serif);font-size:52px;font-weight:300;color:var(--ink);line-height:1;">$2,500</div>
+      <div style="font-size:13px;color:var(--ink-light);margin-top:8px;margin-bottom:20px;">Paid once. Covers everything to get the site live.</div>
+      <div style="border-top:1px solid rgba(100,100,140,0.15);padding-top:16px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--blush-dark);margin-bottom:10px;">Covers Phases 1 &amp; 2</div>
+        <div style="font-size:13px;color:var(--ink-light);line-height:1.7;">Brand refresh · Logo · Style guide · Tagline · WordPress build · 8 pages · Copywriting · Forms · Google Business setup</div>
+      </div>
+    </div>
+
+    <!-- Card 2: Retainer -->
+    <div style="background:#1c2b22;border-radius:14px;padding:32px 28px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#e8c6d0;margin-bottom:16px;">Monthly Retainer · One Fee, All Services</div>
+      <div style="display:flex;align-items:baseline;gap:8px;">
+        <div style="font-family:var(--serif);font-size:52px;font-weight:300;color:white;line-height:1;">$2,750</div>
+        <div style="font-size:16px;color:rgba(255,255,255,0.5);">/mo</div>
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:8px;margin-bottom:20px;">A single retainer covering all ongoing services. Not per phase — one fee for everything.</div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#e8c6d0;margin-bottom:10px;">Covers Phases 3–6 · All 24 Weeks</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;">SEO · Social media management · Paid ads · Community outreach · Content &amp; blog · Email newsletters · Measurement &amp; reporting</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Phase timeline clarification -->
+  <div style="background:var(--cream);border:var(--border);border-radius:10px;padding:24px 28px;margin-bottom:32px;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px;">How the phases relate to the retainer</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;font-size:13px;">
+      <div style="padding:12px 16px;border-right:var(--border);">
+        <div style="font-weight:500;color:var(--ink);margin-bottom:4px;">Phases 1–2</div>
+        <div style="color:var(--ink-faint);">Weeks 1–4<br/>Website build<br/><span style="color:#3a8070;font-weight:500;">$2,500 flat</span></div>
+      </div>
+      <div style="padding:12px 16px;border-right:var(--border);">
+        <div style="font-weight:500;color:var(--ink);margin-bottom:4px;">Phase 3</div>
+        <div style="color:var(--ink-faint);">Weeks 2–8<br/>SEO &amp; ads launch<br/><span style="color:#6a4eb5;font-weight:500;">Retainer</span></div>
+      </div>
+      <div style="padding:12px 16px;border-right:var(--border);">
+        <div style="font-weight:500;color:var(--ink);margin-bottom:4px;">Phases 4–5</div>
+        <div style="color:var(--ink-faint);">Weeks 4–24<br/>Community &amp; content<br/><span style="color:#6a4eb5;font-weight:500;">Retainer</span></div>
+      </div>
+      <div style="padding:12px 16px;">
+        <div style="font-weight:500;color:var(--ink);margin-bottom:4px;">Phase 6</div>
+        <div style="color:var(--ink-faint);">Weeks 6–24<br/>Measurement<br/><span style="color:#6a4eb5;font-weight:500;">Retainer</span></div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:var(--border);font-size:13px;color:var(--ink-faint);">Phases 3–6 all run concurrently under the <strong style="color:var(--ink);">same $2,750/mo retainer</strong> — they describe what's being done each week, not separate charges stacked on top of each other.</div>
+  </div>
+
+  <!-- Campaign total -->
   <table class="invest-table">
     <tr>
       <td>
-        <div style="font-family:var(--serif);font-size:18px;margin-bottom:4px">Website Build</div>
-        <div style="font-size:13px;color:var(--ink-faint)">One-time flat fee — Phases 1 &amp; 2 — template customization, all pages, copywriting, forms, Google Business</div>
+        <div style="font-family:var(--serif);font-size:18px;margin-bottom:4px;">Website Build</div>
+        <div style="font-size:13px;color:var(--ink-faint);">One-time · Phases 1 &amp; 2</div>
       </td>
       <td>$2,500</td>
     </tr>
     <tr>
       <td>
-        <div style="font-family:var(--serif);font-size:18px;margin-bottom:4px">Monthly Retainer</div>
-        <div style="font-size:13px;color:var(--ink-faint)">Phases 3–6 — SEO, social media, ads management, content, community outreach, events, reporting</div>
-      </td>
-      <td>$2,750/mo</td>
-    </tr>
-    <tr>
-      <td>
-        <div style="font-family:var(--serif);font-size:18px;margin-bottom:4px">6-Month Retainer Total</div>
-        <div style="font-size:13px;color:var(--ink-faint)">$2,750 × 6 months</div>
+        <div style="font-family:var(--serif);font-size:18px;margin-bottom:4px;">Monthly Retainer × 6 months</div>
+        <div style="font-size:13px;color:var(--ink-faint);">$2,750/mo · Phases 3–6 · One retainer, all services</div>
       </td>
       <td>$16,500</td>
     </tr>
     <tr>
       <td>
-        <div style="font-family:var(--serif);font-size:18px;margin-bottom:4px">Third-Party Infrastructure</div>
-        <div style="font-size:13px;color:var(--ink-faint)">Paid directly by client — hosting, domain, email platform, ad spend, stock photography, Canva Pro</div>
+        <div style="font-family:var(--serif);font-size:18px;margin-bottom:4px;">Third-Party Infrastructure</div>
+        <div style="font-size:13px;color:var(--ink-faint);">Paid directly by client to vendors · Not billed through NuvelloWeb</div>
       </td>
       <td>~$500/mo</td>
     </tr>
     <tr class="total-row">
       <td>
         Total Campaign Investment
-        <div style="font-size:13px;color:var(--ink-faint);font-weight:400;margin-top:4px">Website + 6-month retainer (excl. third-party)</div>
+        <div style="font-size:13px;color:var(--ink-faint);font-weight:400;margin-top:4px;">Website + 6-month retainer · Excludes third-party</div>
       </td>
       <td>$19,000</td>
     </tr>
   </table>
 
+  <!-- Third party breakdown -->
   <div style="margin-top:40px">
-    <div class="section-label">Third-Party Fees Breakdown</div>
-    <p style="font-size:14px;color:var(--ink-light);margin-bottom:20px;max-width:600px">The following costs are paid directly by City Dentistry to third-party vendors. NuvelloWeb LLC does not mark up these fees.</p>
+    <div class="section-label">Third-Party Fees — Paid by Client Direct</div>
+    <p style="font-size:14px;color:var(--ink-light);margin-bottom:20px;max-width:600px;">These go straight to the vendor. NuvelloWeb does not mark them up or invoice them.</p>
     <table class="invest-table">
       <thead>
         <tr style="border-bottom:var(--border)">
-          <th style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:10px;text-align:left;font-weight:500">Service</th>
-          <th style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:10px;text-align:right;font-weight:500">Est. Cost</th>
+          <th style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:10px;text-align:left;font-weight:500;">Service</th>
+          <th style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:10px;text-align:right;font-weight:500;">Est. Cost</th>
         </tr>
       </thead>
       <tr><td>Envato Template License</td><td>~$69 one-time</td></tr>
@@ -1604,20 +1653,58 @@
 <section id="terms">
   <div class="section-label">Terms &amp; Conditions</div>
   <h2 class="section-title">How we <em>work together.</em></h2>
+
+  <!-- PAYMENT SCHEDULE TABLE -->
+  <div style="margin-bottom:48px;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px;">Payment Schedule</div>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--blush-mid);">
+          <th style="text-align:left;padding:10px 16px 10px 0;font-family:var(--serif);font-size:16px;font-weight:400;color:var(--ink);width:50%;">Website Build</th>
+          <th style="text-align:left;padding:10px 16px 10px 0;font-family:var(--serif);font-size:16px;font-weight:400;color:var(--ink);width:50%;">Monthly Retainer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(100,100,140,0.09);">
+          <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink-light);">
+            <strong style="color:var(--ink);">50% deposit — $1,250</strong><br/>
+            Due upon signing. Work does not begin until deposit is received and cleared.
+          </td>
+          <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink-light);">
+            <strong style="color:var(--ink);">Invoiced on the 25th — $2,750</strong><br/>
+            Retainer invoice is sent on the 25th of the prior month, giving 5–6 days to pay before the 1st.
+          </td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(100,100,140,0.09);">
+          <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink-light);">
+            <strong style="color:var(--ink);">50% balance — $1,250 · Net 15</strong><br/>
+            Invoiced upon site launch and client approval. Due within 15 days. Site goes live upon receipt.
+          </td>
+          <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink-light);">
+            <strong style="color:var(--ink);">Due on the 1st — prepaid</strong><br/>
+            Payment due before work begins for that month. First retainer due the 1st of the month following site launch.
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink-light);">
+            <strong style="color:var(--ink);">Work begins after deposit</strong><br/>
+            No project work, scheduling, or deliverables commence until the $1,250 deposit is confirmed received.
+          </td>
+          <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink-light);">
+            <strong style="color:var(--ink);">Net 15 · Work pauses</strong><br/>
+            If retainer is not received by the 15th of the month, work pauses until payment clears.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REST OF TERMS GRID -->
   <div class="terms-grid">
-    <div class="term-card">
-      <h4>Payment Schedule</h4>
-      <ul>
-        <li>50% deposit due upon signed agreement</li>
-        <li>Remaining balance invoiced upon project milestones</li>
-        <li>Monthly retainers billed on the 1st of each month</li>
-        <li>Net 15 payment terms on all invoices</li>
-      </ul>
-    </div>
     <div class="term-card">
       <h4>Revisions &amp; Approvals</h4>
       <ul>
-        <li>Each deliverable includes rounds as specified above</li>
+        <li>Each deliverable includes revision rounds as specified in scope</li>
         <li>Additional revisions billed at hourly rate</li>
         <li>Client approvals required before proceeding to next phase</li>
         <li>Feedback turnaround expected within 5 business days</li>
@@ -1633,11 +1720,15 @@
     </div>
     <div class="term-card">
       <h4>Cancellation</h4>
-      <p>Either party may terminate this agreement with 14 days written notice. All work completed to date will be invoiced. The deposit is non-refundable once work has commenced.</p>
+      <p>Either party may terminate this agreement with 14 days written notice. All work completed to date will be invoiced. The $1,250 deposit is non-refundable once work has commenced.</p>
     </div>
     <div class="term-card">
       <h4>Timeline &amp; Delays</h4>
       <p>Project timelines are contingent on timely client feedback and asset delivery. Delays caused by the client may result in adjusted delivery dates. NuvelloWeb LLC will communicate any delays promptly.</p>
+    </div>
+    <div class="term-card">
+      <h4>Third-Party Costs</h4>
+      <p>All third-party platform fees (hosting, ad spend, email, Canva, etc.) are paid directly by City Dentistry to the respective vendors. NuvelloWeb LLC does not invoice or mark up these costs.</p>
     </div>
   </div>
 </section>
