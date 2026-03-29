@@ -275,6 +275,13 @@
     gap: 20px;
     margin-top: 16px;
   }
+  .learn-more-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 640px) { .learn-more-grid { grid-template-columns: 1fr; } }
   .overview-card {
     background: var(--cream);
     border: var(--border);
@@ -711,6 +718,13 @@
     gap: 20px;
     margin-top: 16px;
   }
+  .learn-more-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 640px) { .learn-more-grid { grid-template-columns: 1fr; } }
   .overview-card {
     background: var(--cream);
     border: var(--border);
@@ -1141,7 +1155,7 @@
   <div class="section-label">Explore the Detail</div>
   <h2 class="section-title">Four deep-dives, <em>one complete picture.</em></h2>
   <p class="section-intro">Each section of this proposal has a dedicated companion page that goes deeper on the strategy, process, and tools behind the work. Here's a quick overview of what you'll find.</p>
-  <div class="overview-grid" style="margin-top: 8px;">
+  <div class="learn-more-grid" style="margin-top: 8px;">
     <a href="https://proposals.nuvelloweb.com/citydentistry/wordpress-seo.html" style="text-decoration:none;color:inherit;" class="overview-card">
       <div class="num" style="font-size:32px;">🌐</div>
       <h3>WordPress &amp; SEO</h3>
@@ -1635,16 +1649,14 @@
           <th style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:10px;text-align:right;font-weight:500;">Est. Cost</th>
         </tr>
       </thead>
+      <tr><td>Instagram + Facebook Ad Spend</td><td>$300–$600/mo</td></tr>
+      <tr><td>Web Hosting (SiteGround / WP Engine)</td><td>$25–$45/mo</td></tr>
+      <tr><td>Email Platform (Mailchimp or similar)</td><td>$20–$50/mo</td></tr>
+      <tr><td>Google Workspace (email)</td><td>$12–$18/mo</td></tr>
       <tr><td>Envato Template License</td><td>~$69 one-time</td></tr>
       <tr><td>Domain Name (if not owned)</td><td>$15–$20/yr</td></tr>
-      <tr><td>Web Hosting (SiteGround / WP Engine)</td><td>$25–$45/mo</td></tr>
-      <tr><td>Google Workspace (email)</td><td>$12–$18/mo</td></tr>
-      <tr><td>Email Platform (Mailchimp or similar)</td><td>$20–$50/mo</td></tr>
-      <tr><td>Instagram + Facebook Ad Spend</td><td>$300–$600/mo</td></tr>
-      <tr><td>Stock Photography</td><td>$30–$55/mo</td></tr>
-      <tr><td>Canva Pro</td><td>$15/mo</td></tr>
       <tr><td>Google Analytics / Search Console</td><td>Free</td></tr>
-      <tr class="total-row"><td>Estimated Monthly Total</td><td>~$500/mo</td></tr>
+      <tr class="total-row"><td>Estimated Monthly Total</td><td>~$450/mo</td></tr>
     </table>
   </div>
 </section>
